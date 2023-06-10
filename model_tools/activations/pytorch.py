@@ -82,7 +82,7 @@ class PytorchWrapper:
         try:
             output = output.cpu().data.numpy()
         except:
-            print("WARNING: output.cpu() failed, trying output[0].cpu()")
+            # print("WARNING: output.cpu() failed, trying output[0].cpu()")
             output = output[0].cpu().data.numpy()
         return output
 
