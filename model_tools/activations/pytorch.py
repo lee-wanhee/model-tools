@@ -79,13 +79,10 @@ class PytorchWrapper:
 
     @classmethod
     def _tensor_to_numpy(cls, output):
-        if isinstance(output, tuple):
-            print("WARNING: PytorchWrapper._tensor_to_numpy() called on tuple, returning first element")
-            output = output[0].cpu().data.numpy()
         try:
             output = output.cpu().data.numpy()
         except:
-            print("WARNING: PytorchWrapper._tensor_to_numpy() failed, returning first element")
+            print("WARNING: output.cpu() failed, trying output[0].cpu()")
             output = output[0].cpu().data.numpy()
         return output
 
