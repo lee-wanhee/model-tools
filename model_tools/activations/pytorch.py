@@ -79,6 +79,9 @@ class PytorchWrapper:
 
     @classmethod
     def _tensor_to_numpy(cls, output):
+        if isinstance(output, tuple):
+            print("WARNING: PytorchWrapper._tensor_to_numpy() called on tuple, returning first element")
+            return output[0].cpu().data.numpy()
         return output.cpu().data.numpy()
 
     def register_hook(self, layer, layer_name, target_dict):
